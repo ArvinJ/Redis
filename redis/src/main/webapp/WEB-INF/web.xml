@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="pcardGateway" version="3.0">
+  
+  
+  
+  	<!--配置spring -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<!--配置文件的路径 -->
+		<param-value>classpath:spring/applicationContext.xml</param-value>
+	</context-param>
+	
+		<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
+	
+	<!-- Jersey -->
+	<servlet>
+		<servlet-name>JerseyServlet</servlet-name>
+		<servlet-class>com.sun.jersey.spi.spring.container.servlet.SpringServlet</servlet-class>
+		<init-param>
+			<param-name>com.sun.jersey.config.property.packages</param-name>
+			<param-value>com.my.test.rest</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>JerseyServlet</servlet-name>
+		<url-pattern>/rest/*</url-pattern>
+	</servlet-mapping>
+</web-app>
